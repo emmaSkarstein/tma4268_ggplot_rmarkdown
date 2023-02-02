@@ -1,0 +1,84 @@
+---
+title: "A nice report"
+author: "Emma Skarstein"
+date: "Fall 2022"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE, fig.cap="A plot of the tire pressure...?"}
+plot(pressure)
+```
+
+## Including equations
+
+Here is an example of an equation over two lines.
+
+$$
+\begin{aligned}
+&P(X_{n+1} = j \mid X_0 = i_0, \dots X_{n-1} = i_{n-1}, X_n = i_n) \\
+&= P(X_{n+1} = j \mid X_n = i)
+\end{aligned}
+$$
+
+## Including tables
+We can use `kable()` to generate tables from R output very easily. Here is a centered booktabs-style table with a caption. 
+
+```{r}
+library(kableExtra)
+some_cars <- mtcars[1:5, 1:6]
+kable(some_cars, booktabs = TRUE, caption = "A table of some car data.") |> 
+    kable_styling(position = "center")
+```
+
+## Using `ggplot2` in Rmarkdown
+
+
+```{r, message = FALSE}
+# Load some packages. The package showtext prints some messages when you load it, and this doesn't look very nice in the report, so we write message = FALSE.
+library(ggplot2)
+library(palmerpenguins)
+library(showtext)
+showtext_auto()
+font_add_google(name = "Josefin Sans", family = "Josefin Sans")
+```
+
+We make a simple figure from the penguin data. Notice that we use the option `warning = FALSE`, because `ggplot2` prints some warnings because there are some missing values in the data. This isn't a problem here, and the warnings look ugly in our report, so we remove them.
+
+```{r, warning = FALSE, fig.cap="The Palmer penguin figure from the slides, an example of plotting in ggplot2. This version is the most simple version, using default themes and colors."}
+ggplot(data = penguins,  # Add the data
+       aes(x = flipper_length_mm, y = body_mass_g)) + # Map the x and y axis to the respective variables
+  geom_point(aes(color = species)) # Add points, and map the color to the penguin species
+```
+
+
+```{r, warning = FALSE, fig.cap="The Palmer penguin figure from the slides, an example of plotting in ggplot2. In this version we have changed the theme, colors and font, and moved the legend to the top."}
+ggplot(data = penguins,  # Add the data
+       aes(x = flipper_length_mm, y = body_mass_g)) + # Map the x and y axis to the respective variables
+  geom_point(aes(color = species)) + # Add points, and map the color to the penguin species
+  scale_color_manual(values = c("orange", "darkcyan", "hotpink")) + # Change the default colors
+  labs( # Change labels in the plot
+    color = "Species", # Change the legend title
+    x = "Body mass (g)", y = "Flipper length (mm)") + # Change the axis titles
+  theme_bw() + # Use a different theme
+  theme( # Customize the theme
+    legend.position = "top", # Move the legend to the top
+    text = element_text(family = "Josefin Sans")) # Change the font
+```
