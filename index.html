@@ -5,6 +5,8 @@
     <meta charset="utf-8" />
     <meta name="author" content="Emma Skarstein" />
     <script src="index_files/header-attrs/header-attrs.js"></script>
+    <link href="index_files/countdown/countdown.css" rel="stylesheet" />
+    <script src="index_files/countdown/countdown.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
     <link rel="stylesheet" href="my_theme.css" type="text/css" />
   </head>
@@ -22,7 +24,7 @@ class: center, middle, inverse, title-slide
 ### Emma Skarstein
 ]
 .date[
-### Fall 2022
+### Spring 2023
 ]
 
 ---
@@ -66,7 +68,7 @@ class: inverse, center, middle
 - [I made an R Markdown file to explain the code for my **master thesis**](https://htmlpreview.github.io/?https://github.com/emmaSkarstein/Citizen_Science_Skarstein_master/blob/master/reports/Short_version_master.html)
 - [**Supplementary material** for academic articles](https://github.com/emmaSkarstein/ISBA2022-Poster/tree/main/Simulation_example)
 - [Using R packages and education to scale Data Science at **Airbnb**](https://medium.com/airbnb-engineering/using-r-packages-and-education-to-scale-data-science-at-airbnb-906faa58e12d)
-- [These slides!](https://github.com/emmaSkarstein/tma4265_ggplot_rmarkdown)
+- [These slides!](https://github.com/emmaSkarstein/tma4268_ggplot_rmarkdown)
 
 ---
 # First steps
@@ -94,8 +96,12 @@ Open RStudio and create an R Markdown document.
 
 - Name it whatever you want
 - Choose **HTML** to start with
+- Knit the document
 
-
+<div class="countdown" id="timer_fb6f286c" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">01</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
 
 ---
 # Structure of an R Markdown document
@@ -149,33 +155,35 @@ Chunk options can be set *globally* in the `setup` chunk if you want them to app
 ---
 # Try it yourself
 
-- First, knit the template R Markdown file that is generated automatically for you. 
-- Next, change the global chunk option `echo` to `FALSE` so that all code is automatically hidden in the report.
+- Change the global chunk option `echo` to `FALSE` so that all code is automatically hidden in the report.
 - Using `fig.cap="..."`, add a caption to the plot that is included in the template.
 
-
+<div class="countdown" id="timer_57efdf32" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">01</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
 
 ---
 # Including formulas
 
-**In-line formula:** `$X \sim Pois(\lambda)$` becomes `\(X \sim Pois(\lambda)\)`.
+**In-line formula:** `$X \sim Binomial(\lambda)$` becomes `\(X \sim Binomial(\lambda)\)`.
 
 **Equation on separate line: **
 
-`$$` `X \sim Pois(\lambda)$$` becomes
+`$$` `X \sim Binomial(\lambda)$$` becomes
 
 $$
-X \sim Pois(\lambda)
+X \sim Binomial(\lambda)
 $$
 **Equation aligned over several lines: **
 
 Use `\begin{aligned}` and `\end{aligned}`.
 
 `$$`
-`\begin{aligned}` ` X &amp;\sim \\ &amp;Pois(\lambda) \end{aligned}$$` 
+`\begin{aligned}` ` X &amp;\sim \\ &amp;Binomial(\lambda) \end{aligned}$$` 
 
 becomes
-`$$\begin{aligned} X &amp;\sim \\ &amp;Pois(\lambda) \end{aligned}$$`
+`$$\begin{aligned} X &amp;\sim \\ &amp;Binomial(\lambda) \end{aligned}$$`
 
 
 ---
@@ -183,7 +191,7 @@ becomes
 
 To create the document, press the **Knit** button.
 
-For courses at NTNU, we generally want you to hand in **PDF** documents, since that lets us view comment in your file directly in Blackboard. 
+For courses at NTNU, we generally want you to hand in **PDF** documents, since that lets us view and comment in your file directly in Blackboard. 
 
 [In order to create a PDF document](https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html), you will need to have a LaTeX distribution installed. One option is TinyTeX, which you can install easily with the R package tinytex:
 
@@ -199,7 +207,7 @@ tinytex::install_tinytex()
 ---
 title: "A nice report"
 author: "Emma Skarstein"
-date: "Fall 2022"
+date: "Spring 2023"
 output: html_document 
 ---
 ```
@@ -212,7 +220,7 @@ output: html_document
 ---
 title: "A nice report"
 author: "Emma Skarstein"
-date: "Fall 2022"
+date: "Spring 2023"
 output: pdf_document
 ---
 ```
@@ -248,7 +256,12 @@ Write `?kable` in *R* for more details of the `kable()` function.
 - Add a table to the template (feel free to use exactly the code from the previous slide).
 - Knit to PDF.
 - Find out how to add a caption. .small[(Hint: check `?kable`)]
-- Find out how to make the table centered. .small[(Hint: you will need to use the function `kable_styling()`. Check `?kable_styling`.)]
+- If you have time: take a look at the other options in `?kable` and `?kable_styling`.
+
+<div class="countdown" id="timer_893bff28" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
 
 ---
 # Workflow
@@ -262,7 +275,7 @@ Write `?kable` in *R* for more details of the `kable()` function.
   - .small[Using `\begin{align}` instead of `\begin{aligned}` (you can use `align`, but then you need to include the *amsmath* LaTeX package)]
   - .small[Blank lines inside equations will lead to errors.]
 - For group collaborations, it is really useful to use GitHub. If you are new to GitHub, I recommend using [GitHub desktop](https://desktop.github.com/), it makes it a lot easier! 
-  - .small[To avoid merge conflicts, it may be a god idea to not push the compiled PDF to the GitHub repo, only the .rmd file, and then each group member knits the pdf locally while working on it.]
+  - .small[Alternatively, you could check out the [`trackdown`](https://bookdown.org/yihui/rmarkdown-cookbook/google-drive.html) package for working in Google Docs, but I haven't tried this myself yet.]
 
 ---
 # Best practices for this course
@@ -271,7 +284,7 @@ Write `?kable` in *R* for more details of the `kable()` function.
 
 - **Knit to PDF** .small[(this is so we can see it directly in Blackboard)]
   - .small[If for some reason you can't, knit to HTML, open the HTML in your browser, select print and then "Save to PDF" from there.]
-- **`echo = FALSE` as default** .small[(we don't need to see most of the code in the report, unless you think it integrates nicely with the text and want to include it) (honestly I feel like this is mostly a style choice, it really doesn't matter so much for the grader)]
+- **`echo = TRUE` as default** .small[(this may vary from course to course, but in this course we really want to see your code)]
   - .small[Note that other courses may have other preferences on this.]
 - **Hand in the PDF file and the `.rmd` file**, *do NOT put them in a .zip file PLEASE!!* .small[(then we need to download it and it is super frustrating and we can't comment in the pdf in Blackboard)]
 
@@ -308,6 +321,7 @@ Here are also some resources that cover R Markdown, both the very basic level an
 
 - Many of templates for paged HTML documents (thesis, CV, poster, etc.) with [`pagedown`](https://github.com/rstudio/pagedown) 
 
+- NEW: You may also be interested in **Quarto**, the next generation of R Markdown. It works very similar to R Markdown, but you can use it for Python and Julia as well. 
 
 
 ---
@@ -415,7 +429,7 @@ ggplot(data = penguins,
        aes(x = flipper_length_mm, y = body_mass_g))
 ```
 .pull-left[
-&lt;img src="index_files/figure-html/unnamed-chunk-18-1.png" width="90%" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-19-1.png" width="90%" /&gt;
 ]
 .pull-right[
 Let's say we want to plot the flipper length against body mass. We use the `ggplot()` function, and specify the data set, and what we want on the x- and y-axis. If we run this, we see the initialized plot.
@@ -432,7 +446,7 @@ ggplot(data = penguins,
 ```
 
 .pull-left[
-&lt;img src="index_files/figure-html/unnamed-chunk-20-1.png" width="90%" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-21-1.png" width="90%" /&gt;
 ]
 
 .pull-right[
@@ -450,7 +464,7 @@ ggplot(data = penguins,
 ```
 
 .pull-left[
-&lt;img src="index_files/figure-html/unnamed-chunk-22-1.png" width="90%" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-23-1.png" width="90%" /&gt;
 ]
 
 .pull-right[
@@ -469,7 +483,7 @@ ggplot(data = penguins,
 ```
 
 .pull-left[
-&lt;img src="index_files/figure-html/unnamed-chunk-24-1.png" width="90%" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-25-1.png" width="90%" /&gt;
 ]
 
 .pull-right[
@@ -489,7 +503,7 @@ ggplot(data = penguins,
 ```
 
 .pull-left[
-&lt;img src="index_files/figure-html/unnamed-chunk-26-1.png" width="90%" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-27-1.png" width="90%" /&gt;
 ]
 
 .pull-right[
@@ -510,7 +524,7 @@ ggplot(data = penguins,
 ```
 
 .pull-left[
-&lt;img src="index_files/figure-html/unnamed-chunk-28-1.png" width="90%" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-29-1.png" width="90%" /&gt;
 ]
 
 .pull-right[
@@ -533,7 +547,7 @@ ggplot(data = penguins,
 ```
 
 .pull-left[
-&lt;img src="index_files/figure-html/unnamed-chunk-30-1.png" width="60%" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-31-1.png" width="60%" /&gt;
 ]
 
 .pull-right[
@@ -573,7 +587,7 @@ ggplot(data = penguins,
 ```
 
 .pull-left[
-&lt;img src="index_files/figure-html/unnamed-chunk-34-1.png" width="60%" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-35-1.png" width="60%" /&gt;
 ]
 
 .pull-right[
@@ -583,7 +597,7 @@ I used Josefin Sans here to make the change obvious. A nice go-to font is Open S
 ---
 # Final penguin figure
 
-&lt;img src="index_files/figure-html/unnamed-chunk-35-1.png" width="60%" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-36-1.png" width="60%" /&gt;
 
 ---
 # More penguin plots
@@ -608,9 +622,9 @@ class: center, middle
 
 Thank you for your attention, I hope this is helpful. If you have any questions, go ahead and ask in the forum, I would love to help!
 
-You can see the "solution" to the "Try it yourself" exercises [here](https://github.com/emmaSkarstein/tma4265_ggplot_rmarkdown/blob/master/nice_report.Rmd).
+You can see the "solution" to the "Try it yourself" exercises [here](https://github.com/emmaSkarstein/tma4268_ggplot_rmarkdown/blob/master/nice_report.Rmd).
 
-Slides created via the R package [`xaringan`](https://github.com/yihui/xaringan), all code is available [on GitHub](https://github.com/emmaSkarstein/tma4265_ggplot_rmarkdown).
+Slides created via the R package [`xaringan`](https://github.com/yihui/xaringan), all code is available [on GitHub](https://github.com/emmaSkarstein/tma4268_ggplot_rmarkdown).
 
 
     </textarea>
